@@ -1,0 +1,15 @@
+{
+  "name": "cypressmocha",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Harshith",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "cypress": "^14.0.0",
+    "xpath_cypress": "^2.0.0"
+  }
+}
