@@ -62,4 +62,14 @@ jobs:
 
           path: cypress/results
 
+        -name: Upload Cypress Artifacts
+
+        uses: actions/upload-artifact@v2 
+
+        with: 
+          
+          name: cypress-artifacts  
+
+          path: cypress/results 
+
  
