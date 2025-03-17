@@ -60,7 +60,7 @@ jobs:
 
           name: cypress-results
 
-          path: cypress/results
+          path: cypress/e2e
 
       - name: Upload Cypress Artifacts
 
