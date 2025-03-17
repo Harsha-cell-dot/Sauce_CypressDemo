@@ -70,6 +70,6 @@ jobs:
           
           name: cypress-artifacts  
 
-          path: cypress/results 
+          path: cypress/e2e 
 
  
