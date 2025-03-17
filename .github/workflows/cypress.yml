@@ -1,75 +1,54 @@
 name: Cypress Tests
- 
+
 on:
-
   push:
-
     branches:
-
-      - master
-
+      - master    # You can change this to any branch you'd like the workflow to trigger on
   pull_request:
-
     branches:
+      - master    # Trigger on pull requests to the main branch
 
-      - master
- 
 jobs:
-
   cypress-run:
+    runs-on: ubuntu-latest  # This can be adjusted based on your preferred environment
 
-    runs-on: ubuntu-latest
- 
     steps:
+      # Step 1: Check out the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Checkout repository
-
-        uses: actions/checkout@v2
- 
+      # Step 2: Set up Node.js
       - name: Set up Node.js
-
-        uses: actions/setup-node@v2
-
+        uses: actions/setup-node@v3
         with:
+          node-version: '16'  # Use your desired version of Node.js (e.g., 16)
 
-          node-version: '16'
- 
+      # Step 3: Install dependencies
       - name: Install dependencies
-
         run: |
-
-          npm install
- 
-      - name: Install Cypress
-
-        run: |
-
           npm install cypress --save-dev
- 
+
+      # Step 4: Run Cypress tests
       - name: Run Cypress tests
+        run: npx cypress run   # Assuming you have the 'cypress:run' script in your package.json
 
-        run: |
-
-          npx cypress run
- 
-      - name: Upload Cypress results (optional)
-
+      # Step 5: Upload Cypress Test Results
+      - name: Upload Cypress Test Results
         uses: actions/upload-artifact@v2
-
         with:
+          name: cypress-test-results   # This is the name of the uploaded artifact
+          path: cypress/results/*.json  # Path to your test results (adjust as necessary)
 
-          name: cypress-results
+      # Step 6: Upload Cypress Screenshots (optional)
+      - name: Upload Cypress Screenshots
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-screenshots   # Name of the screenshot artifact
+          path: cypress/screenshots/**/*.png  # Path to your screenshots (adjust as necessary)
 
-          path: cypress/e2e
-
-      - name: Upload Cypress Artifacts
-
-        uses: actions/upload-artifact@v2 
-
-        with: 
-          
-          name: cypress-artifacts  
-
-          path: cypress/e2e 
-
- 
+      # Step 7: Upload Cypress Videos (optional)
+      - name: Upload Cypress Videos
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-videos   # Name of the video artifact
+          path: cypress/videos/**/*.mp4  # Path to your videos (adjust as necessary)
