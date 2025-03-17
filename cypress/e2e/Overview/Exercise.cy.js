@@ -12,7 +12,7 @@ describe('Exercise Demo', ()=>{
                   cy.get("#user-name").type(value);
                 } else if (key === 'password') {
                   cy.get("#password").type('secret_sauce');
-                  cy.log("want to check action flo");
+                  cy.log("want to check action flow");
                 }
               });
 
